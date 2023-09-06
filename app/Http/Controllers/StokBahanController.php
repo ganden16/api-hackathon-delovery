@@ -33,8 +33,8 @@ class StokBahanController extends Controller
             'nama' => $request['nama'],
             'mitra_id' => (int) $request['mitra_id'],
             'kategori_bahan_id' => (int) $request['kategori_bahan_id'],
-            'total_satuan' => (int) $request['total_satuan'] ? (int) $request['total_satuan'] : null,
-            'total_berat' => (int) $request['total_berat'] ? (int) $request['total_berat'] : null,
+            'total_satuan' => (int) $request['total_satuan'] ? (int) $request['total_satuan'] : 0,
+            'total_berat' => (int) $request['total_berat'] ? (int) $request['total_berat'] : 0,
             'gambar' => $request['gambar'] ? $request['gambar'] : null
 
         ];
@@ -42,8 +42,8 @@ class StokBahanController extends Controller
             'nama' => 'required',
             'mitra_id' => 'required',
             'kategori_bahan_id' => 'required',
-            'total_satuan' => 'integer',
-            'total_berat' => 'integer',
+            'total_satuan' => 'numeric',
+            'total_berat' => 'numeric',
         ];
 
         $validator = Validator::make($data, $rules);
@@ -65,8 +65,8 @@ class StokBahanController extends Controller
             'nama' => $request['nama'],
             'mitra_id' => (int) $request['mitra_id'],
             'kategori_bahan_id' => (int) $request['kategori_bahan_id'],
-            'total_satuan' => (int) $request['total_satuan'] ? (int) $request['total_satuan'] : null,
-            'total_berat' => (int) $request['total_berat'] ? (int) $request['total_berat'] : null,
+            'total_satuan' => (int) $request['total_satuan'] ? (int) $request['total_satuan'] : 0,
+            'total_berat' => (int) $request['total_berat'] ? (int) $request['total_berat'] : 0,
             'gambar' => $request['gambar'] ? $request['gambar'] : null
 
         ];
@@ -74,8 +74,8 @@ class StokBahanController extends Controller
             'nama' => 'required',
             'mitra_id' => 'required',
             'kategori_bahan_id' => 'required',
-            'total_satuan' => 'integer',
-            'total_berat' => 'integer',
+            'total_satuan' => 'numeric',
+            'total_berat' => 'numeric',
         ];
 
         $validator = Validator::make($data, $rules);
@@ -88,7 +88,7 @@ class StokBahanController extends Controller
             'status' => true,
             'message' => 'update stok bahan sukses',
             'data' => $stokBahan
-        ], 201);
+        ], 200);
     }
 
     public function delete($id)

@@ -68,7 +68,7 @@ class KategoriBahanController extends Controller
             'status' => true,
             'message' => 'update kategori bahan sukses',
             'data' => KategoriBahan::find($id)
-        ], 201);
+        ], 200);
     }
 
     public function delete($id)

@@ -16,6 +16,7 @@ Route::prefix('auth')->group(function () {
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/login', [AuthController::class, 'login']);
     Route::get('/me', [AuthController::class, 'me'])->middleware('auth:sanctum');
+    Route::put('/update', [AuthController::class, 'updateUser'])->middleware('auth:sanctum');
     Route::delete('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 });
 
@@ -51,7 +52,7 @@ Route::prefix('bahan-mitra')->group(function () {
     Route::delete('/{id}', [BahanMitraController::class, 'delete'])->middleware(['auth:sanctum', 'mitra']);
 });
 
-Route::prefix('role')->group(function () {
+Route::prefix('role')->middleware('auth:sanctum', 'karyawan')->group(function () {
     Route::get('/', [RoleController::class, 'getAll']);
     Route::get('/{role}', [RoleController::class, 'findOne']);
     Route::post('/', [RoleController::class, 'add']);

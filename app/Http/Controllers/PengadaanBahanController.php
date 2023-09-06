@@ -32,7 +32,7 @@ class PengadaanBahanController extends Controller
             'bahan_mitra_id' => 'required',
             'jumlah' => 'required',
             'total_harga' => 'required',
-            'status_pengiriman_id' => 'integer',
+            'status_pengiriman_id' => 'numeric',
         ];
 
         $validator = Validator::make($data, $rules);
@@ -62,7 +62,7 @@ class PengadaanBahanController extends Controller
             'bahan_mitra_id' => 'required',
             'jumlah' => 'required',
             'total_harga' => 'required',
-            'status_pengiriman_id' => 'integer',
+            'status_pengiriman_id' => 'numeric',
         ];
 
         $validator = Validator::make($data, $rules);
@@ -75,7 +75,7 @@ class PengadaanBahanController extends Controller
             'status' => true,
             'message' => 'update pengadaan bahan sukses',
             'data' => $updatePengadaanBahan->load(['bahanMitra', 'status'])
-        ], 201);
+        ], 200);
     }
 
     public function delete($id)

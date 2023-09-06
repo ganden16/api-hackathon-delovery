@@ -79,4 +79,35 @@ class AuthController extends Controller
             'message' => 'logout success',
         ], 200);
     }
+
+    public function updateUser(Request $request)
+    {
+        $data = [
+            'nama' => $request['nama'],
+            'email' => $request['email'],
+            'telepon' => $request['telepon'],
+            'jenis_kelamin' => $request['jenis_kelamin'],
+            'alamat' => $request['alamat'],
+            'kota' => $request['kota'],
+            'provinsi' => $request['provinsi'],
+            'negara' => $request['negara'],
+            'gambar' => $request['gambar']
+        ];
+        $rules = [
+            'nama' => 'required',
+            'email' => 'required',
+            'telepon' => 'required',
+        ];
+
+        $validator = Validator::make($data, $rules);
+        $validator->validate();
+
+        User::where('id', $request->user()->id)->update($data);
+        $updateUser = User::find($request->user()->id);
+        return response()->json([
+            'status' => true,
+            'message' => 'update user berhasil',
+            'data' => $updateUser
+        ], 200);
+    }
 }

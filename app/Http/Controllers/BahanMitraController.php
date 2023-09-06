@@ -34,8 +34,8 @@ class BahanMitraController extends Controller
             'mitra_id' => (int) $request['mitra_id'],
             'kategori_bahan_id' => (int) $request['kategori_bahan_id'],
             'status_penawaran' => (int) $request['status_penawaran'],
-            'harga_satuan' => (int) $request['harga_satuan'] ? (int) $request['harga_satuan'] : null,
-            'harga_kiloan' => (int) $request['harga'] ? (int) $request['harga'] : null,
+            'harga_satuan' => (int) $request['harga_satuan'] ? (int) $request['harga_satuan'] : 0,
+            'harga_kiloan' => (int) $request['harga_kiloan'] ? (int) $request['harga_kiloan'] : 0,
             'gambar' => $request['gambar'] ? $request['gambar'] : null
         ];
         $rules = [
@@ -43,8 +43,8 @@ class BahanMitraController extends Controller
             'mitra_id' => 'required',
             'kategori_bahan_id' => 'required',
             'status_penawaran' => 'required',
-            'harga_satuan' => 'integer',
-            'harga_kiloan' => 'integer',
+            'harga_satuan' => 'numeric',
+            'harga_kiloan' => 'numeric',
         ];
 
         $validator = Validator::make($data, $rules);
@@ -67,8 +67,8 @@ class BahanMitraController extends Controller
             'mitra_id' => (int) $request['mitra_id'],
             'kategori_bahan_id' => (int) $request['kategori_bahan_id'],
             'status_penawaran' => (int) $request['status_penawaran'],
-            'harga_satuan' => (int) $request['harga_satuan'] ? (int) $request['harga_satuan'] : null,
-            'harga_kiloan' => (int) $request['harga_kiloan'] ? (int) $request['harga_kiloan'] : null,
+            'harga_satuan' => (int) $request['harga_satuan'] ? (int) $request['harga_satuan'] : 0,
+            'harga_kiloan' => (int) $request['harga_kiloan'] ? (int) $request['harga_kiloan'] : 0,
             'gambar' => $request['gambar'] ? $request['gambar'] : null
         ];
         $rules = [
@@ -76,8 +76,8 @@ class BahanMitraController extends Controller
             'mitra_id' => 'required',
             'kategori_bahan_id' => 'required',
             'status_penawaran' => 'required',
-            'harga_satuan' => 'integer',
-            'harga_kiloan' => 'integer',
+            'harga_satuan' => 'numeric',
+            'harga_kiloan' => 'numeric',
         ];
 
         $validator = Validator::make($data, $rules);
@@ -89,7 +89,7 @@ class BahanMitraController extends Controller
             'status' => true,
             'message' => 'update bahan mitra sukses',
             'data' => $newBahanMitra
-        ], 201);
+        ], 200);
     }
 
     public function delete($id)

@@ -68,7 +68,7 @@ class KategoriProdukController extends Controller
             'status' => true,
             'message' => 'update kategori produk sukses',
             'data' => KategoriProduk::find($id)
-        ], 201);
+        ], 200);
     }
 
     public function delete($id)

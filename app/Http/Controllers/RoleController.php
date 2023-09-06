@@ -68,7 +68,7 @@ class RoleController extends Controller
             'status' => true,
             'message' => 'update role sukses',
             'data' => Role::find($id)
-        ], 201);
+        ], 200);
     }
 
     public function delete($id)

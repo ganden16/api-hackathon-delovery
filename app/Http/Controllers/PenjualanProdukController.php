@@ -25,6 +25,7 @@ class PenjualanProdukController extends Controller
             'nama_pembeli' =>  $request['nama_pembeli'],
             'alamat_pengiriman' =>  $request['alamat_pengiriman'],
             'kode_pos_pengiriman' =>  $request['kode_pos_pengiriman'],
+            'kota_pengiriman' =>  $request['kota_pengiriman'],
             'jumlah' => (int) $request['jumlah'],
             'total_harga' => (int) $request['total_harga'],
             'waktu_penjualan' => $request['waktu_penjualan'] ? $request['waktu_penjualan'] :  now(),
@@ -35,6 +36,7 @@ class PenjualanProdukController extends Controller
             'pelanggan_id' => 'required',
             'nama_pembeli' =>  'required',
             'alamat_pengiriman' =>  'required',
+            'kota_pengiriman' =>  'required',
             'kode_pos_pengiriman' =>  'required',
             'jumlah' => 'required',
             'total_harga' => 'required',
@@ -62,6 +64,7 @@ class PenjualanProdukController extends Controller
             'nama_pembeli' =>  $request['nama_pembeli'],
             'alamat_pengiriman' =>  $request['alamat_pengiriman'],
             'kode_pos_pengiriman' =>  $request['kode_pos_pengiriman'],
+            'kota_pengiriman' =>  $request['kota_pengiriman'],
             'jumlah' => (int) $request['jumlah'],
             'total_harga' => (int) $request['total_harga'],
             'waktu_diterima' => $request['waktu_diterima'] ? $request['waktu_diterima'] : null,
@@ -72,6 +75,7 @@ class PenjualanProdukController extends Controller
             'nama_pembeli' =>  'required',
             'alamat_pengiriman' =>  'required',
             'kode_pos_pengiriman' =>  'required',
+            'kota_pengiriman' =>  'required',
             'jumlah' => 'required',
             'total_harga' => 'required',
         ];
@@ -85,7 +89,7 @@ class PenjualanProdukController extends Controller
             'status' => true,
             'message' => 'update order sukses',
             'data' => $newPenjualanProduk->load(['produk', 'status', 'pelanggan'])
-        ], 201);
+        ], 200);
     }
 
     public function delete($id)

@@ -42,7 +42,7 @@ class ProdukController extends Controller
         ];
         $rules = [
             'nama' => 'required',
-            'kategori_produk_id' => 'required|integer',
+            'kategori_produk_id' => 'required|numeric',
             'harga' => 'required',
             'jumlah_stok' => 'required',
         ];
@@ -71,7 +71,7 @@ class ProdukController extends Controller
         ];
         $rules = [
             'nama' => 'required',
-            'kategori_produk_id' => 'required|integer',
+            'kategori_produk_id' => 'required|numeric',
             'harga' => 'required',
             'jumlah_stok' => 'required',
         ];
@@ -85,7 +85,7 @@ class ProdukController extends Controller
             'status' => true,
             'message' => 'update produk sukses',
             'data' => Produk::find($id)->load('kategoriProduk')
-        ], 201);
+        ], 200);
     }
 
     public function delete($id)
