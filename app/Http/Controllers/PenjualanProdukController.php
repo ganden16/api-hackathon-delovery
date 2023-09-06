@@ -13,7 +13,7 @@ class PenjualanProdukController extends Controller
         return response()->json([
             'status' => true,
             'message' => 'data penjualan produk',
-            'data' => $penjualanProduk->load(['produk', 'status', 'pelanggan'])
+            'data' => $penjualanProduk->load(['produk', 'status', 'pelanggan', 'kota'])
         ]);
     }
 
@@ -25,7 +25,7 @@ class PenjualanProdukController extends Controller
             'nama_pembeli' =>  $request['nama_pembeli'],
             'alamat_pengiriman' =>  $request['alamat_pengiriman'],
             'kode_pos_pengiriman' =>  $request['kode_pos_pengiriman'],
-            'kota_pengiriman' =>  $request['kota_pengiriman'],
+            'kota_id' =>  $request['kota_id'],
             'jumlah' => (int) $request['jumlah'],
             'total_harga' => (int) $request['total_harga'],
             'waktu_penjualan' => $request['waktu_penjualan'] ? $request['waktu_penjualan'] :  now(),
@@ -36,7 +36,7 @@ class PenjualanProdukController extends Controller
             'pelanggan_id' => 'required',
             'nama_pembeli' =>  'required',
             'alamat_pengiriman' =>  'required',
-            'kota_pengiriman' =>  'required',
+            'kota_id' =>  'required',
             'kode_pos_pengiriman' =>  'required',
             'jumlah' => 'required',
             'total_harga' => 'required',
@@ -51,7 +51,7 @@ class PenjualanProdukController extends Controller
         return response()->json([
             'status' => true,
             'message' => 'order sukses',
-            'data' => $newPenjualanProduk->load(['produk', 'status', 'pelanggan'])
+            'data' => $newPenjualanProduk->load(['produk', 'status', 'pelanggan', 'kota'])
         ], 201);
     }
 
@@ -64,7 +64,7 @@ class PenjualanProdukController extends Controller
             'nama_pembeli' =>  $request['nama_pembeli'],
             'alamat_pengiriman' =>  $request['alamat_pengiriman'],
             'kode_pos_pengiriman' =>  $request['kode_pos_pengiriman'],
-            'kota_pengiriman' =>  $request['kota_pengiriman'],
+            'kota_id' =>  $request['kota_id'],
             'jumlah' => (int) $request['jumlah'],
             'total_harga' => (int) $request['total_harga'],
             'waktu_diterima' => $request['waktu_diterima'] ? $request['waktu_diterima'] : null,
@@ -75,7 +75,7 @@ class PenjualanProdukController extends Controller
             'nama_pembeli' =>  'required',
             'alamat_pengiriman' =>  'required',
             'kode_pos_pengiriman' =>  'required',
-            'kota_pengiriman' =>  'required',
+            'kota_id' =>  'required',
             'jumlah' => 'required',
             'total_harga' => 'required',
         ];
@@ -88,7 +88,7 @@ class PenjualanProdukController extends Controller
         return response()->json([
             'status' => true,
             'message' => 'update order sukses',
-            'data' => $newPenjualanProduk->load(['produk', 'status', 'pelanggan'])
+            'data' => $newPenjualanProduk->load(['produk', 'status', 'pelanggan', 'kota'])
         ], 200);
     }
 
@@ -110,7 +110,7 @@ class PenjualanProdukController extends Controller
 
     public function reportPembelianPelanggan(Request $request)
     {
-        $pembelianProduk = PenjualanProduk::with(['produk', 'status'])->where('pelanggan_id', $request->user()->id)->paginate(5);
+        $pembelianProduk = PenjualanProduk::with(['produk', 'status', 'kota'])->where('pelanggan_id', $request->user()->id)->paginate(5);
         return response()->json([
             'status' => true,
             'message' => 'list data pembelian produk',
@@ -119,7 +119,7 @@ class PenjualanProdukController extends Controller
     }
     public function reportPenjualanPerusahaan()
     {
-        $penjualanProduk = PenjualanProduk::with(['produk', 'status', 'pelanggan'])->paginate(10);
+        $penjualanProduk = PenjualanProduk::with(['produk', 'status', 'pelanggan', 'kota'])->paginate(10);
         return response()->json([
             'status' => true,
             'message' => 'list data penjualan produk',

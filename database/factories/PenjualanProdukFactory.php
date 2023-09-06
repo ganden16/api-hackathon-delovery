@@ -21,7 +21,7 @@ class PenjualanProdukFactory extends Factory
             'status_pengiriman_id' => rand(1, 3),
             'alamat_pengiriman' => fake()->address(),
             'kode_pos_pengiriman' => fake()->postcode(),
-            'kota_pengiriman' => fake()->city(),
+            'kota_id' => rand(1, 500),
             'produk_id' => rand(1, 100),
             'jumlah' => rand(1, 10),
             'total_harga' => rand(10000, 100000),

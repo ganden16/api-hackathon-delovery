@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('nama_pembeli');
             $table->string('alamat_pengiriman');
             $table->string('kode_pos_pengiriman');
-            $table->string('kota_pengiriman');
             $table->unsignedInteger('jumlah');
             $table->unsignedInteger('total_harga');
             $table->datetime('waktu_penjualan')->default(now());

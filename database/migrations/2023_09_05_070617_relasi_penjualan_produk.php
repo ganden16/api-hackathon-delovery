@@ -14,10 +14,12 @@ return new class extends Migration
         Schema::table('penjualan_produk', function (Blueprint $table) {
             $table->foreignId('produk_id')->after('id');
             $table->foreignId('pelanggan_id')->after('produk_id');
-            $table->foreignId('status_pengiriman_id')->after('pelanggan_id')->default(1);
+            $table->foreignId('kota_id')->after('pelanggan_id');
+            $table->foreignId('status_pengiriman_id')->after('kota_id')->default(1);
 
             $table->foreign('produk_id')->references('id')->on('produk')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('pelanggan_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('kota_id')->references('id')->on('kota')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('status_pengiriman_id')->references('id')->on('status_pengiriman')->onDelete('cascade')->onUpdate('cascade');
         });
     }

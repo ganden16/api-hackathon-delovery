@@ -31,4 +31,9 @@ class PenjualanProduk extends Model
     {
         return $this->belongsTo(StatusPengiriman::class, 'status_pengiriman_id', 'id');
     }
+
+    public function kota()
+    {
+        return $this->belongsTo(Kota::class, 'kota_id', 'id');
+    }
 }

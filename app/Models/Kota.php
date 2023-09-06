@@ -16,4 +16,9 @@ class Kota extends Model
     {
         return $this->BelongsTo(Provinsi::class, 'provinsi_id', 'id');
     }
+
+    public function produk()
+    {
+        return $this->belongsToMany(Produk::class, 'kota_produk', 'kota_id', 'produk_id');
+    }
 }

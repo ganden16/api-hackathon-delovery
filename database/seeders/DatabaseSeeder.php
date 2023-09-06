@@ -9,6 +9,7 @@ use App\Models\ChatRoom;
 use App\Models\KategoriBahan;
 use App\Models\KategoriProduk;
 use App\Models\Kota;
+use App\Models\KotaProduk;
 use App\Models\Obrolan;
 use App\Models\PengadaanBahan;
 use App\Models\PenjualanProduk;
@@ -18,6 +19,7 @@ use App\Models\Role;
 use App\Models\StatusPengiriman;
 use App\Models\StokBahan;
 use App\Models\User;
+use Database\Factories\KotaProdukFactory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\File;
 
@@ -95,20 +97,7 @@ class DatabaseSeeder extends Seeder
                 'nama' => $status
             ]);
         });
-
-        User::where('role_id', 3)->each(function ($user) {
-            $insertPenjualanProduk = PenjualanProduk::factory(50)->create([
-                'pelanggan_id' => $user->id,
-            ]);
-        });
-
-        $insertBahanMitra = BahanMitra::all()->each(function ($bahanMitra) {
-            PengadaanBahan::factory(50)->create([
-                'bahan_mitra_id' => $bahanMitra->id,
-                'mitra_id' => $bahanMitra->mitra_id
-            ]);
-        });
-
+        
         $jsonData = File::json('database/data/region.json');
         $region = collect($jsonData);
         $provinsi_id = 1;
@@ -124,5 +113,20 @@ class DatabaseSeeder extends Seeder
             }
             $provinsi_id = $provinsi_id + 1;
         };
+
+        KotaProduk::factory(600)->create();
+
+        User::where('role_id', 3)->each(function ($user) {
+            $insertPenjualanProduk = PenjualanProduk::factory(50)->create([
+                'pelanggan_id' => $user->id,
+            ]);
+        });
+
+        $insertBahanMitra = BahanMitra::all()->each(function ($bahanMitra) {
+            PengadaanBahan::factory(50)->create([
+                'bahan_mitra_id' => $bahanMitra->id,
+                'mitra_id' => $bahanMitra->mitra_id
+            ]);
+        });
     }
 }

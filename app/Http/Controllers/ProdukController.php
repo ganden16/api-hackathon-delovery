@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kota;
 use App\Models\Produk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -10,10 +11,12 @@ class ProdukController extends Controller
 {
     public function getAll(Request $request)
     {
-        if ($request['kategori']) {
-            $produk = Produk::with('kategoriProduk')->where('kategori_produk_id', (int)$request['kategori'])->paginate(10);
+        if ($request['kota']) {
+            $produk = Kota::with('produk')->where('id', (int)$request['kota'])->paginate(10);
+        } elseif ($request['kategori']) {
+            $produk = Produk::where('kategori_produk_id', (int)$request['kategori'])->paginate(10);
         } else {
-            $produk = Produk::with('kategoriProduk')->paginate(10);
+            $produk = Produk::paginate(10);
         }
         return response()->json([
             'status' => true,
