@@ -16,7 +16,7 @@ class PengadaanBahanController extends Controller
             'status' => true,
             'message' => 'data pengadaan bahan',
             'data' => $pengadaanBahan->load(['bahanMitra', 'status'])
-        ]);
+        ], 200);
     }
 
     public function add(Request $request)

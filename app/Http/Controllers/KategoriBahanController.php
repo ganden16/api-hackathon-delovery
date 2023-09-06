@@ -25,7 +25,7 @@ class KategoriBahanController extends Controller
             'status' => true,
             'message' => 'data kategori bahan',
             'data' => $kategoriBahan
-        ]);
+        ], 200);
     }
 
     public function add(Request $request)

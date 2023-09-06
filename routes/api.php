@@ -4,10 +4,12 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BahanMitraController;
 use App\Http\Controllers\KategoriBahanController;
 use App\Http\Controllers\KategoriProdukController;
+use App\Http\Controllers\KotaController;
 use App\Http\Controllers\ObrolanController;
 use App\Http\Controllers\PengadaanBahanController;
 use App\Http\Controllers\PenjualanProdukController;
 use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\ProvinsiController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\StokBahanController;
 use Illuminate\Support\Facades\Route;
@@ -95,4 +97,14 @@ Route::prefix('report')->middleware(['auth:sanctum'])->group(function () {
     Route::get('/penjualan/perusahaan', [PenjualanProdukController::class, 'reportpenjualanPerusahaan'])->middleware('karyawan');
     Route::get('/pembelian/perusahaan', [PengadaanBahanController::class, 'reportPembelianPerusahaan'])->middleware('karyawan');
     Route::get('/penjualan/mitra', [PengadaanBahanController::class, 'reportPenjualanMitra'])->middleware('mitra');
+});
+
+Route::prefix('kota')->group(function () {
+    Route::get('/', [KotaController::class, 'getAll']);
+    Route::get('/{kota}', [KotaController::class, 'findOne']);
+});
+
+Route::prefix('provinsi')->group(function () {
+    Route::get('/', [ProvinsiController::class, 'getAll']);
+    Route::get('/{provinsi}', [ProvinsiController::class, 'findOne']);
 });

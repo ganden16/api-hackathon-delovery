@@ -8,15 +8,18 @@ use App\Models\BahanMitra;
 use App\Models\ChatRoom;
 use App\Models\KategoriBahan;
 use App\Models\KategoriProduk;
+use App\Models\Kota;
 use App\Models\Obrolan;
 use App\Models\PengadaanBahan;
 use App\Models\PenjualanProduk;
 use App\Models\Produk;
+use App\Models\Provinsi;
 use App\Models\Role;
 use App\Models\StatusPengiriman;
 use App\Models\StokBahan;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\File;
 
 class DatabaseSeeder extends Seeder
 {
@@ -105,5 +108,21 @@ class DatabaseSeeder extends Seeder
                 'mitra_id' => $bahanMitra->mitra_id
             ]);
         });
+
+        $jsonData = File::json('database/data/region.json');
+        $region = collect($jsonData);
+        $provinsi_id = 1;
+        foreach ($region as $data) {
+            Provinsi::create([
+                'nama' => $data['provinsi']
+            ]);
+            foreach ($data['kota'] as $kota) {
+                Kota::create([
+                    'nama' => $kota,
+                    'provinsi_id' => $provinsi_id
+                ]);
+            }
+            $provinsi_id = $provinsi_id + 1;
+        };
     }
 }
